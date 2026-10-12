@@ -21,6 +21,13 @@
       "by": "LizardMan",
       "version": "in development",
       "note": "its entries come before its first release"
+    },
+    "oblique": {
+      "name": "Oblique Strategies",
+      "by": "ultralazr",
+      "url": "https://github.com/ultralazr/op1-oblique-strategies",
+      "version": "c909aa4",
+      "checked": "patch_oblique.py and README.md (patch list, hook sites); stock output SHA-256 e452aa9576ec8af500442d95bc373eaf2ed9a3634cf5c972c73908067a7ed1db"
     }
   },
   "fx_types": [
@@ -82,7 +89,8 @@
     { "keys": "shift + F, G, A, B (the first four white keys)", "where": "any screen", "what": "pattern 1-4", "project": "op1r" },
     { "keys": "shift + G, A, B, C, D, E (the last six white keys)", "where": "any screen", "what": "mutes sequencer slots 1-6", "project": "op1r" },
     { "keys": "shift + D#", "where": "any screen", "what": "mutes all sequencer slots", "project": "op1r" },
-    { "keys": "T1", "where": "the clock screen (shift + help)", "what": "resource monitor", "project": "op1r" }
+    { "keys": "T1", "where": "the clock screen (shift + help)", "what": "resource monitor", "project": "op1r" },
+    { "keys": "shift + press the orange encoder", "where": "any screen", "what": "shows a random Oblique Strategies card; while it shows, any key closes it and that press does nothing else. On top of op1r it runs before op1r's key handling, so it would take op1r's shift + red on the dots and euclid screens if that means the red encoder press (not checked)", "project": "oblique" }
   ],
   "midi": [
     { "message": "CC 5-52", "what": "the keys, as in the OP-1's own CTRL mode (key code + 5)", "project": "op1r" },
@@ -95,12 +103,16 @@
   ],
   "firmware_patches": [
     { "file": "OP1_vdk.ldr", "change": "52 replaced ranges and a 204,928-byte block inserted at offset 2,171,347; the full list is in data/manifest.json", "project": "op1r" },
-    { "file": "content/op1_factory.db", "change": "14 edits (the rows above)", "project": "op1r" }
+    { "file": "content/op1_factory.db", "change": "14 edits (the rows above)", "project": "op1r" },
+    { "file": "OP1_vdk.ldr", "change": "CALLs at 0x019C2D3E (key handler, also patched by op1r: it chains to whatever is there) and 0x01A3BC0E (end of the GUI frame) redirected; an 8,360-byte block inserted before the FINAL block; the FIRST block's length and checksum", "project": "oblique" }
   ],
-  "memory": [],
+  "memory": [
+    { "range": "0x01E40000-0x01E420A8", "what": "code, card text and state (one LDR block)", "project": "oblique" }
+  ],
   "build_id": [
     { "project": "stock", "version_string": "R. 00246", "shown": "" },
-    { "project": "op1r", "version_string": " op1r 18 (in place of R. 00246)", "shown": "the boot screen shows op1r and its version under the TE logo" }
+    { "project": "op1r", "version_string": " op1r 18 (in place of R. 00246)", "shown": "the boot screen shows op1r and its version under the TE logo" },
+    { "project": "oblique", "version_string": "unchanged", "shown": "" }
   ],
   "unknown_names": [
     { "project": "stock", "effect": "crashes ([op-forums #945](https://op-forums.com/t/4283/945))", "engine": "locks up with \"patch.cpp:390 Invalid synth patch\" (op1r's changelog, op1r 18)" },

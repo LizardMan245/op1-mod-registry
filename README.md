@@ -28,6 +28,7 @@ for 246, add yours: see [Add or correct an entry](#add-or-correct-an-entry).
 | stock 246 | Teenage Engineering | 246 |  |
 | [op1r](https://github.com/pcppcp/op1r) | popcorp | op1r 18 (fb06689) |  |
 | Opus | LizardMan | in development | its entries come before its first release |
+| [Oblique Strategies](https://github.com/ultralazr/op1-oblique-strategies) | ultralazr | c909aa4 |  |
 
 ### Effects (`fx_types`)
 
@@ -123,6 +124,7 @@ Combinations a mod takes outside its own screens.
 | shift + G, A, B, C, D, E (the last six white keys) | any screen | mutes sequencer slots 1-6 | op1r |
 | shift + D# | any screen | mutes all sequencer slots | op1r |
 | T1 | the clock screen (shift + help) | resource monitor | op1r |
+| shift + press the orange encoder | any screen | shows a random Oblique Strategies card; while it shows, any key closes it and that press does nothing else. On top of op1r it runs before op1r's key handling, so it would take op1r's shift + red on the dots and euclid screens if that means the red encoder press (not checked) | Oblique Strategies |
 
 ### MIDI
 
@@ -151,12 +153,15 @@ Where a mod changes the files in the update package. Two mods that change the sa
 |---|---|---|
 | OP1_vdk.ldr | 52 replaced ranges and a 204,928-byte block inserted at offset 2,171,347; the full list is in data/manifest.json | op1r |
 | content/op1_factory.db | 14 edits (the rows above) | op1r |
+| OP1_vdk.ldr | CALLs at 0x019C2D3E (key handler, also patched by op1r: it chains to whatever is there) and 0x01A3BC0E (end of the GUI frame) redirected; an 8,360-byte block inserted before the FINAL block; the FIRST block's length and checksum | Oblique Strategies |
 
 ### Memory
 
 RAM a mod's code and data use while the OP-1 runs.
 
-_Nothing recorded yet._
+| range | what | project |
+|---|---|---|
+| 0x01E40000-0x01E420A8 | code, card text and state (one LDR block) | Oblique Strategies |
 
 ### Version text
 
@@ -166,6 +171,7 @@ What a build calls itself, so bug reports and tools can tell builds apart.
 |---|---|---|
 | stock 246 | R. 00246 |  |
 | op1r |  op1r 18 (in place of R. 00246) | the boot screen shows op1r and its version under the TE logo |
+| Oblique Strategies | unchanged |  |
 
 ### Names a firmware doesn't know
 
@@ -180,6 +186,7 @@ What a firmware does with a sound that names an effect or engine it doesn't have
 
 - stock 246: content/op1_factory.db in op1_246.op1 (SHA-256 c5315218f825f143b415ca554516541898abee843d3a236df0b54c04e1fb13a9)
 - op1r: data/manifest.json (its op1_factory.db edits applied to stock), README.md, CHANGELOG.md
+- Oblique Strategies: patch_oblique.py and README.md (patch list, hook sites); stock output SHA-256 e452aa9576ec8af500442d95bc373eaf2ed9a3634cf5c972c73908067a7ed1db
 
 <!-- tables:end -->
 
