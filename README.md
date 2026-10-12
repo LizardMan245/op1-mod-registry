@@ -28,7 +28,6 @@ for 246, add yours: see [Add or correct an entry](#add-or-correct-an-entry).
 | stock 246 | Teenage Engineering | 246 |  |
 | [op1r](https://github.com/pcppcp/op1r) | popcorp | op1r 18 (fb06689) |  |
 | [#249](https://maikopruett.com/op-1) | maiko | #249 (2026-10-11) | carries op1r's synths, effects and sequencers with op1r 18's names and rows, so it has no rows of its own here |
-| [OP-1 Firmware Workshop](https://github.com/Hundekraft/op1-workshop) | Hundekraft | release 37f71ad3cc694cad, on op1r 18 | built on op1r 18, so it has op1r's entries too. Its rows follow the options picked: new effects from 14 and new engines from 15, in the order listed |
 | Opus | LizardMan | in development | its entries come before its first release |
 
 ### Effects (`fx_types`)
@@ -48,8 +47,6 @@ Sounds store the effect's name. The row is its row in `content/op1_factory.db`.
 | tape | 11 | op1r | tape echo |
 | clouds | 12 | op1r |  |
 | reverb | 13 | op1r | its screen says "Kali" |
-| washer | 14 or 15 | OP-1 Firmware Workshop | chorus, ensemble, flanger |
-| snowglobe | 14 or 15 | OP-1 Firmware Workshop | shimmer reverb |
 
 ### Synth engines (`synth_types`)
 
@@ -71,10 +68,6 @@ Sounds store the engine's name as `type`.
 | supersaw | 12 | op1r |  |
 | fmbell | 13 | op1r |  |
 | granular | 14 | op1r |  |
-| wavetable | one of 15-18 | OP-1 Firmware Workshop |  |
-| taffy | one of 15-18 | OP-1 Firmware Workshop | phase distortion |
-| pew | one of 15-18 | OP-1 Firmware Workshop | drawbar organ, rotary speaker |
-| elg | one of 15-18 | OP-1 Firmware Workshop | drone |
 
 ### Engines hosted in iter's slot
 
@@ -150,7 +143,6 @@ Files a mod adds to the update package, and files and folders it writes on the O
 | path | project |
 |---|---|
 | content/display/cloudsfx.svg, dots.svg, euclid.svg, fmbell.svg, fxgeneric.svg, granular.svg, iterlab.svg, kalireverb.svg, quadlfo.svg, supersaw.svg, sysmon.svg, tapeecho.svg | op1r |
-| content/display/wavetable.svg, taffy.svg, pew.svg, elg.svg, washer.svg, snowglobe.svg | OP-1 Firmware Workshop |
 
 ### Changes to the firmware files
 
@@ -160,7 +152,6 @@ Where a mod changes the files in the update package. Two mods that change the sa
 |---|---|---|
 | OP1_vdk.ldr | 52 replaced ranges and a 204,928-byte block inserted at offset 2,171,347; the full list is in data/manifest.json | op1r |
 | content/op1_factory.db | 14 edits (the rows above) | op1r |
-| OP1_vdk.ldr, content/op1_factory.db | its own changes on top of op1r 18's, listed per set of options in variants/*/manifest.json | OP-1 Firmware Workshop |
 
 ### Memory
 
@@ -185,14 +176,12 @@ What a firmware does with a sound that names an effect or engine it doesn't have
 |---|---|---|
 | stock 246 | crashes ([op-forums #945](https://op-forums.com/t/4283/945)) | locks up with "patch.cpp:390 Invalid synth patch" (op1r's changelog, op1r 18) |
 | op1r | not documented | loads the sound as iter (since op1r 18) |
-| OP-1 Firmware Workshop | as op1r 18 | as op1r 18 |
 
 ### How each was checked
 
 - stock 246: content/op1_factory.db in op1_246.op1 (SHA-256 c5315218f825f143b415ca554516541898abee843d3a236df0b54c04e1fb13a9)
 - op1r: data/manifest.json (its op1_factory.db edits applied to stock), README.md, CHANGELOG.md
 - #249: content/op1_factory.db in op1_249.op1 (SHA-256 b7adf5c0fdd523a726e81880e683eda48061a261944dfa1a7a52c57ebfc41066)
-- OP-1 Firmware Workshop: variants/*/manifest.json, applied to op1r 18's op1_factory.db
 
 <!-- tables:end -->
 

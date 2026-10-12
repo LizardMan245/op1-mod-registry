@@ -24,14 +24,6 @@
       "checked": "content/op1_factory.db in op1_249.op1 (SHA-256 b7adf5c0fdd523a726e81880e683eda48061a261944dfa1a7a52c57ebfc41066)",
       "note": "carries op1r's synths, effects and sequencers with op1r 18's names and rows, so it has no rows of its own here"
     },
-    "op1-workshop": {
-      "name": "OP-1 Firmware Workshop",
-      "by": "Hundekraft",
-      "url": "https://github.com/Hundekraft/op1-workshop",
-      "version": "release 37f71ad3cc694cad, on op1r 18",
-      "checked": "variants/*/manifest.json, applied to op1r 18's op1_factory.db",
-      "note": "built on op1r 18, so it has op1r's entries too. Its rows follow the options picked: new effects from 14 and new engines from 15, in the order listed"
-    },
     "opus": {
       "name": "Opus",
       "by": "LizardMan",
@@ -50,9 +42,7 @@
     { "name": "filter", "row": 2, "project": "op1r", "note": "stock's hidden 4-pole filter: stock plays it but doesn't list it" },
     { "name": "tape", "row": 11, "project": "op1r", "note": "tape echo" },
     { "name": "clouds", "row": 12, "project": "op1r" },
-    { "name": "reverb", "row": 13, "project": "op1r", "note": "its screen says \"Kali\"" },
-    { "name": "washer", "row": [14, 15], "project": "op1-workshop", "marker": 21252, "note": "chorus, ensemble, flanger" },
-    { "name": "snowglobe", "row": [14, 15], "project": "op1-workshop", "marker": 21253, "note": "shimmer reverb" }
+    { "name": "reverb", "row": 13, "project": "op1r", "note": "its screen says \"Kali\"" }
   ],
   "synth_types": [
     { "name": "cluster", "row": 1, "project": "stock" },
@@ -68,11 +58,7 @@
     { "name": "iter", "row": 11, "project": "op1r", "note": "stock's hidden engine: stock has its code but no row" },
     { "name": "supersaw", "row": 12, "project": "op1r" },
     { "name": "fmbell", "row": 13, "project": "op1r" },
-    { "name": "granular", "row": 14, "project": "op1r" },
-    { "name": "wavetable", "row": [15, 16, 17, 18], "project": "op1-workshop", "marker": 21252 },
-    { "name": "taffy", "row": [15, 16, 17, 18], "project": "op1-workshop", "marker": 21253, "note": "phase distortion" },
-    { "name": "pew", "row": [15, 16, 17, 18], "project": "op1-workshop", "marker": 21254, "note": "drawbar organ, rotary speaker" },
-    { "name": "elg", "row": [15, 16, 17, 18], "project": "op1-workshop", "marker": 21255, "note": "drone" }
+    { "name": "granular", "row": 14, "project": "op1r" }
   ],
   "iter_markers": [],
   "drum_types": [
@@ -113,13 +99,11 @@
     { "message": "SysEx F0 00 20 76 00 01 03 F7 / ... 00 F7", "what": "OP-Z controller mode on / off", "project": "op1r" }
   ],
   "files": [
-    { "path": "content/display/cloudsfx.svg, dots.svg, euclid.svg, fmbell.svg, fxgeneric.svg, granular.svg, iterlab.svg, kalireverb.svg, quadlfo.svg, supersaw.svg, sysmon.svg, tapeecho.svg", "project": "op1r" },
-    { "path": "content/display/wavetable.svg, taffy.svg, pew.svg, elg.svg, washer.svg, snowglobe.svg", "project": "op1-workshop" }
+    { "path": "content/display/cloudsfx.svg, dots.svg, euclid.svg, fmbell.svg, fxgeneric.svg, granular.svg, iterlab.svg, kalireverb.svg, quadlfo.svg, supersaw.svg, sysmon.svg, tapeecho.svg", "project": "op1r" }
   ],
   "firmware_patches": [
     { "file": "OP1_vdk.ldr", "change": "52 replaced ranges and a 204,928-byte block inserted at offset 2,171,347; the full list is in data/manifest.json", "project": "op1r" },
-    { "file": "content/op1_factory.db", "change": "14 edits (the rows above)", "project": "op1r" },
-    { "file": "OP1_vdk.ldr, content/op1_factory.db", "change": "its own changes on top of op1r 18's, listed per set of options in variants/*/manifest.json", "project": "op1-workshop" }
+    { "file": "content/op1_factory.db", "change": "14 edits (the rows above)", "project": "op1r" }
   ],
   "memory": [],
   "build_id": [
@@ -128,7 +112,6 @@
   ],
   "unknown_names": [
     { "project": "stock", "effect": "crashes ([op-forums #945](https://op-forums.com/t/4283/945))", "engine": "locks up with \"patch.cpp:390 Invalid synth patch\" (op1r's changelog, op1r 18)" },
-    { "project": "op1r", "effect": "not documented", "engine": "loads the sound as iter (since op1r 18)" },
-    { "project": "op1-workshop", "effect": "as op1r 18", "engine": "as op1r 18" }
+    { "project": "op1r", "effect": "not documented", "engine": "loads the sound as iter (since op1r 18)" }
   ]
 }
