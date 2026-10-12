@@ -26,7 +26,7 @@ for 246, add yours: see [Add or correct an entry](#add-or-correct-an-entry).
 | project | by | version | note |
 |---|---|---|---|
 | stock 246 | Teenage Engineering | 246 |  |
-| [op1r](https://github.com/pcppcp/op1r) | popcorp | op1r 18 (fb06689) |  |
+| [op1r](https://github.com/pcppcp/op1r) | popcorp | op1r 20 (0ed5f5c) |  |
 | Opus | LizardMan | in development | its entries come before its first release |
 | [Oblique Strategies](https://github.com/ultralazr/op1-oblique-strategies) | ultralazr | c909aa4 |  |
 
@@ -124,6 +124,10 @@ Combinations a mod takes outside its own screens.
 | shift + G, A, B, C, D, E (the last six white keys) | any screen | mutes sequencer slots 1-6 | op1r |
 | shift + D# | any screen | mutes all sequencer slots | op1r |
 | T1 | the clock screen (shift + help) | resource monitor | op1r |
+| T2 | the clock screen (shift + help) | USB out page (master, or master + the four tape tracks) | op1r |
+| orange encoder press (op1r calls it red) | the tape screen | sets a tape marker | op1r |
+| shift + orange encoder press | the tape screen | removes the marker under the cursor; the same press as Oblique Strategies' card | op1r |
+| shift + orange encoder turn | the tape screen | jumps to the next / previous marker (stock: the record level) | op1r |
 | shift + press the orange encoder | any screen | shows a random Oblique Strategies card; while it shows, any key closes it and that press does nothing else. On top of op1r it runs before op1r's key handling, so it would take op1r's shift + red on the dots and euclid screens if that means the red encoder press (not checked) | Oblique Strategies |
 
 ### MIDI
@@ -143,7 +147,7 @@ Files a mod adds to the update package, and files and folders it writes on the O
 
 | path | project |
 |---|---|
-| content/display/cloudsfx.svg, dots.svg, euclid.svg, fmbell.svg, fxgeneric.svg, granular.svg, iterlab.svg, kalireverb.svg, quadlfo.svg, supersaw.svg, sysmon.svg, tapeecho.svg | op1r |
+| content/display/cloudsfx.svg, dots.svg, euclid.svg, fmbell.svg, fxgeneric.svg, granular.svg, iterlab.svg, kalireverb.svg, quadlfo.svg, supersaw.svg, sysmon.svg, tapeecho.svg, usbout.svg | op1r |
 
 ### Changes to the firmware files
 
@@ -151,7 +155,7 @@ Where a mod changes the files in the update package. Two mods that change the sa
 
 | file | change | project |
 |---|---|---|
-| OP1_vdk.ldr | 52 replaced ranges and a 204,928-byte block inserted at offset 2,171,347; the full list is in data/manifest.json | op1r |
+| OP1_vdk.ldr | 64 replaced ranges and a 222,888-byte block inserted at offset 2,171,351; the full list is in data/manifest.json | op1r |
 | content/op1_factory.db | 14 edits (the rows above) | op1r |
 | OP1_vdk.ldr | CALLs at 0x019C2D3E (key handler, also patched by op1r: it chains to whatever is there) and 0x01A3BC0E (end of the GUI frame) redirected; an 8,360-byte block inserted before the FINAL block; the FIRST block's length and checksum | Oblique Strategies |
 
@@ -161,6 +165,7 @@ RAM a mod's code and data use while the OP-1 runs.
 
 | range | what | project |
 |---|---|---|
+| 0x01E00000-0x01E36660 | code and data (one LDR block; 0x01E32070 in op1r 18) | op1r |
 | 0x01E40000-0x01E420A8 | code, card text and state (one LDR block) | Oblique Strategies |
 
 ### Version text
@@ -170,7 +175,7 @@ What a build calls itself, so bug reports and tools can tell builds apart.
 | project | version string | shown |
 |---|---|---|
 | stock 246 | R. 00246 |  |
-| op1r |  op1r 18 (in place of R. 00246) | the boot screen shows op1r and its version under the TE logo |
+| op1r |  op1r 20 (in place of R. 00246) | the boot screen shows op1r and its version under the TE logo |
 | Oblique Strategies | unchanged |  |
 
 ### Names a firmware doesn't know

@@ -13,7 +13,7 @@
       "name": "op1r",
       "by": "popcorp",
       "url": "https://github.com/pcppcp/op1r",
-      "version": "op1r 18 (fb06689)",
+      "version": "op1r 20 (0ed5f5c)",
       "checked": "data/manifest.json (its op1_factory.db edits applied to stock), README.md, CHANGELOG.md"
     },
     "opus": {
@@ -90,6 +90,10 @@
     { "keys": "shift + G, A, B, C, D, E (the last six white keys)", "where": "any screen", "what": "mutes sequencer slots 1-6", "project": "op1r" },
     { "keys": "shift + D#", "where": "any screen", "what": "mutes all sequencer slots", "project": "op1r" },
     { "keys": "T1", "where": "the clock screen (shift + help)", "what": "resource monitor", "project": "op1r" },
+    { "keys": "T2", "where": "the clock screen (shift + help)", "what": "USB out page (master, or master + the four tape tracks)", "project": "op1r" },
+    { "keys": "orange encoder press (op1r calls it red)", "where": "the tape screen", "what": "sets a tape marker", "project": "op1r" },
+    { "keys": "shift + orange encoder press", "where": "the tape screen", "what": "removes the marker under the cursor; the same press as Oblique Strategies' card", "project": "op1r" },
+    { "keys": "shift + orange encoder turn", "where": "the tape screen", "what": "jumps to the next / previous marker (stock: the record level)", "project": "op1r" },
     { "keys": "shift + press the orange encoder", "where": "any screen", "what": "shows a random Oblique Strategies card; while it shows, any key closes it and that press does nothing else. On top of op1r it runs before op1r's key handling, so it would take op1r's shift + red on the dots and euclid screens if that means the red encoder press (not checked)", "project": "oblique" }
   ],
   "midi": [
@@ -99,19 +103,20 @@
     { "message": "SysEx F0 00 20 76 00 01 03 F7 / ... 00 F7", "what": "OP-Z controller mode on / off", "project": "op1r" }
   ],
   "files": [
-    { "path": "content/display/cloudsfx.svg, dots.svg, euclid.svg, fmbell.svg, fxgeneric.svg, granular.svg, iterlab.svg, kalireverb.svg, quadlfo.svg, supersaw.svg, sysmon.svg, tapeecho.svg", "project": "op1r" }
+    { "path": "content/display/cloudsfx.svg, dots.svg, euclid.svg, fmbell.svg, fxgeneric.svg, granular.svg, iterlab.svg, kalireverb.svg, quadlfo.svg, supersaw.svg, sysmon.svg, tapeecho.svg, usbout.svg", "project": "op1r" }
   ],
   "firmware_patches": [
-    { "file": "OP1_vdk.ldr", "change": "52 replaced ranges and a 204,928-byte block inserted at offset 2,171,347; the full list is in data/manifest.json", "project": "op1r" },
+    { "file": "OP1_vdk.ldr", "change": "64 replaced ranges and a 222,888-byte block inserted at offset 2,171,351; the full list is in data/manifest.json", "project": "op1r" },
     { "file": "content/op1_factory.db", "change": "14 edits (the rows above)", "project": "op1r" },
     { "file": "OP1_vdk.ldr", "change": "CALLs at 0x019C2D3E (key handler, also patched by op1r: it chains to whatever is there) and 0x01A3BC0E (end of the GUI frame) redirected; an 8,360-byte block inserted before the FINAL block; the FIRST block's length and checksum", "project": "oblique" }
   ],
   "memory": [
+    { "range": "0x01E00000-0x01E36660", "what": "code and data (one LDR block; 0x01E32070 in op1r 18)", "project": "op1r" },
     { "range": "0x01E40000-0x01E420A8", "what": "code, card text and state (one LDR block)", "project": "oblique" }
   ],
   "build_id": [
     { "project": "stock", "version_string": "R. 00246", "shown": "" },
-    { "project": "op1r", "version_string": " op1r 18 (in place of R. 00246)", "shown": "the boot screen shows op1r and its version under the TE logo" },
+    { "project": "op1r", "version_string": " op1r 20 (in place of R. 00246)", "shown": "the boot screen shows op1r and its version under the TE logo" },
     { "project": "oblique", "version_string": "unchanged", "shown": "" }
   ],
   "unknown_names": [
