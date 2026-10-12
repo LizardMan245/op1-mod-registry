@@ -16,14 +16,6 @@
       "version": "op1r 18 (fb06689)",
       "checked": "data/manifest.json (its op1_factory.db edits applied to stock), README.md, CHANGELOG.md"
     },
-    "maiko-249": {
-      "name": "#249",
-      "by": "maiko",
-      "url": "https://maikopruett.com/op-1",
-      "version": "#249 (2026-10-11)",
-      "checked": "content/op1_factory.db in op1_249.op1 (SHA-256 b7adf5c0fdd523a726e81880e683eda48061a261944dfa1a7a52c57ebfc41066)",
-      "note": "carries op1r's synths, effects and sequencers with op1r 18's names and rows, so it has no rows of its own here"
-    },
     "opus": {
       "name": "Opus",
       "by": "LizardMan",

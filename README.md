@@ -27,7 +27,6 @@ for 246, add yours: see [Add or correct an entry](#add-or-correct-an-entry).
 |---|---|---|---|
 | stock 246 | Teenage Engineering | 246 |  |
 | [op1r](https://github.com/pcppcp/op1r) | popcorp | op1r 18 (fb06689) |  |
-| [#249](https://maikopruett.com/op-1) | maiko | #249 (2026-10-11) | carries op1r's synths, effects and sequencers with op1r 18's names and rows, so it has no rows of its own here |
 | Opus | LizardMan | in development | its entries come before its first release |
 
 ### Effects (`fx_types`)
@@ -181,7 +180,6 @@ What a firmware does with a sound that names an effect or engine it doesn't have
 
 - stock 246: content/op1_factory.db in op1_246.op1 (SHA-256 c5315218f825f143b415ca554516541898abee843d3a236df0b54c04e1fb13a9)
 - op1r: data/manifest.json (its op1_factory.db edits applied to stock), README.md, CHANGELOG.md
-- #249: content/op1_factory.db in op1_249.op1 (SHA-256 b7adf5c0fdd523a726e81880e683eda48061a261944dfa1a7a52c57ebfc41066)
 
 <!-- tables:end -->
 
