@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "updated": "2026-10-12",
+  "firmware": "original OP-1, firmware 246",
+  "projects": {
+    "stock": {
+      "name": "stock 246",
+      "by": "Teenage Engineering",
+      "version": "246",
+      "checked": "content/op1_factory.db in op1_246.op1 (SHA-256 c5315218f825f143b415ca554516541898abee843d3a236df0b54c04e1fb13a9)"
+    },
+    "op1r": {
+      "name": "op1r",
+      "by": "popcorp",
+      "url": "https://github.com/pcppcp/op1r",
+      "version": "op1r 18 (fb06689)",
+      "checked": "data/manifest.json (its op1_factory.db edits applied to stock), README.md, CHANGELOG.md"
+    },
+    "maiko-249": {
+      "name": "#249",
+      "by": "maiko",
+      "url": "https://maikopruett.com/op-1",
+      "version": "#249 (2026-10-11)",
+      "checked": "content/op1_factory.db in op1_249.op1 (SHA-256 b7adf5c0fdd523a726e81880e683eda48061a261944dfa1a7a52c57ebfc41066)",
+      "note": "carries op1r's synths, effects and sequencers with op1r 18's names and rows, so it has no rows of its own here"
+    },
+    "op1-workshop": {
+      "name": "OP-1 Firmware Workshop",
+      "by": "Hundekraft",
+      "url": "https://github.com/Hundekraft/op1-workshop",
+      "version": "release 37f71ad3cc694cad, on op1r 18",
+      "checked": "variants/*/manifest.json, applied to op1r 18's op1_factory.db",
+      "note": "built on op1r 18, so it has op1r's entries too. Its rows follow the options picked: new effects from 14 and new engines from 15, in the order listed"
+    },
+    "opus": {
+      "name": "Opus",
+      "by": "LizardMan",
+      "version": "in development",
+      "note": "its entries come before its first release"
+    }
+  },
+  "fx_types": [
+    { "name": "grid", "row": 3, "project": "stock" },
+    { "name": "punch", "row": 4, "project": "stock" },
+    { "name": "delay", "row": 5, "project": "stock" },
+    { "name": "phone", "row": 7, "project": "stock" },
+    { "name": "spring", "row": 8, "project": "stock" },
+    { "name": "cwo", "row": 9, "project": "stock" },
+    { "name": "nitro", "row": 10, "project": "stock" },
+    { "name": "filter", "row": 2, "project": "op1r", "note": "stock's hidden 4-pole filter: stock plays it but doesn't list it" },
+    { "name": "tape", "row": 11, "project": "op1r", "note": "tape echo" },
+    { "name": "clouds", "row": 12, "project": "op1r" },
+    { "name": "reverb", "row": 13, "project": "op1r", "note": "its screen says \"Kali\"" },
+    { "name": "washer", "row": [14, 15], "project": "op1-workshop", "marker": 21252, "note": "chorus, ensemble, flanger" },
+    { "name": "snowglobe", "row": [14, 15], "project": "op1-workshop", "marker": 21253, "note": "shimmer reverb" }
+  ],
+  "synth_types": [
+    { "name": "cluster", "row": 1, "project": "stock" },
+    { "name": "digital", "row": 2, "project": "stock" },
+    { "name": "drwave", "row": 3, "project": "stock" },
+    { "name": "fm", "row": 4, "project": "stock" },
+    { "name": "phase", "row": 5, "project": "stock" },
+    { "name": "pulse", "row": 6, "project": "stock" },
+    { "name": "dna", "row": 7, "project": "stock" },
+    { "name": "string", "row": 8, "project": "stock" },
+    { "name": "dsynth", "row": 9, "project": "stock" },
+    { "name": "voltage", "row": 10, "project": "stock" },
+    { "name": "iter", "row": 11, "project": "op1r", "note": "stock's hidden engine: stock has its code but no row" },
+    { "name": "supersaw", "row": 12, "project": "op1r" },
+    { "name": "fmbell", "row": 13, "project": "op1r" },
+    { "name": "granular", "row": 14, "project": "op1r" },
+    { "name": "wavetable", "row": [15, 16, 17, 18], "project": "op1-workshop", "marker": 21252 },
+    { "name": "taffy", "row": [15, 16, 17, 18], "project": "op1-workshop", "marker": 21253, "note": "phase distortion" },
+    { "name": "pew", "row": [15, 16, 17, 18], "project": "op1-workshop", "marker": 21254, "note": "drawbar organ, rotary speaker" },
+    { "name": "elg", "row": [15, 16, 17, 18], "project": "op1-workshop", "marker": 21255, "note": "drone" }
+  ],
+  "iter_markers": [],
+  "drum_types": [
+    { "name": "dbox", "row": 1, "project": "stock" }
+  ],
+  "lfo_types": [
+    { "name": "tremolo", "row": 1, "project": "stock" },
+    { "name": "value", "row": 2, "project": "stock" },
+    { "name": "random", "row": 3, "project": "stock" },
+    { "name": "element", "row": 4, "project": "stock" },
+    { "name": "midi", "row": 5, "project": "stock" },
+    { "name": "bend", "row": 6, "project": "stock" },
+    { "name": "crank", "row": 7, "project": "stock" },
+    { "name": "quad", "row": 8, "project": "op1r", "note": "four LFOs" }
+  ],
+  "seq_types": [
+    { "name": "pattern", "row": 1, "project": "stock" },
+    { "name": "endless", "row": 2, "project": "stock" },
+    { "name": "tombola", "row": 3, "project": "stock" },
+    { "name": "finger", "row": 4, "project": "stock" },
+    { "name": "sketch", "row": 5, "project": "stock" },
+    { "name": "arpeggio", "row": 6, "project": "stock" },
+    { "name": "euclid", "row": 7, "project": "op1r" },
+    { "name": "dots", "row": 8, "project": "op1r" }
+  ],
+  "sound_keys": [],
+  "keys": [
+    { "keys": "shift + C#", "where": "any screen", "what": "starts or stops all sequencer slots", "project": "op1r" },
+    { "keys": "shift + F, G, A, B (the first four white keys)", "where": "any screen", "what": "pattern 1-4", "project": "op1r" },
+    { "keys": "shift + G, A, B, C, D, E (the last six white keys)", "where": "any screen", "what": "mutes sequencer slots 1-6", "project": "op1r" },
+    { "keys": "shift + D#", "where": "any screen", "what": "mutes all sequencer slots", "project": "op1r" },
+    { "keys": "T1", "where": "the clock screen (shift + help)", "what": "resource monitor", "project": "op1r" }
+  ],
+  "midi": [
+    { "message": "CC 5-52", "what": "the keys, as in the OP-1's own CTRL mode (key code + 5)", "project": "op1r" },
+    { "message": "CC 102-105", "what": "the four encoders, relative", "project": "op1r" },
+    { "message": "CC 106-118", "what": "mixer volume, pan and mute per track, tape input", "project": "op1r" },
+    { "message": "SysEx F0 00 20 76 00 01 03 F7 / ... 00 F7", "what": "OP-Z controller mode on / off", "project": "op1r" }
+  ],
+  "files": [
+    { "path": "content/display/cloudsfx.svg, dots.svg, euclid.svg, fmbell.svg, fxgeneric.svg, granular.svg, iterlab.svg, kalireverb.svg, quadlfo.svg, supersaw.svg, sysmon.svg, tapeecho.svg", "project": "op1r" },
+    { "path": "content/display/wavetable.svg, taffy.svg, pew.svg, elg.svg, washer.svg, snowglobe.svg", "project": "op1-workshop" }
+  ],
+  "firmware_patches": [
+    { "file": "OP1_vdk.ldr", "change": "52 replaced ranges and a 204,928-byte block inserted at offset 2,171,347; the full list is in data/manifest.json", "project": "op1r" },
+    { "file": "content/op1_factory.db", "change": "14 edits (the rows above)", "project": "op1r" },
+    { "file": "OP1_vdk.ldr, content/op1_factory.db", "change": "its own changes on top of op1r 18's, listed per set of options in variants/*/manifest.json", "project": "op1-workshop" }
+  ],
+  "memory": [],
+  "build_id": [
+    { "project": "stock", "version_string": "R. 00246", "shown": "" },
+    { "project": "op1r", "version_string": " op1r 18 (in place of R. 00246)", "shown": "the boot screen shows op1r and its version under the TE logo" }
+  ],
+  "unknown_names": [
+    { "project": "stock", "effect": "crashes ([op-forums #945](https://op-forums.com/t/4283/945))", "engine": "locks up with \"patch.cpp:390 Invalid synth patch\" (op1r's changelog, op1r 18)" },
+    { "project": "op1r", "effect": "not documented", "engine": "loads the sound as iter (since op1r 18)" },
+    { "project": "op1-workshop", "effect": "as op1r 18", "engine": "as op1r 18" }
+  ]
+}

@@ -1,0 +1,47 @@
+name: Add or correct an entry
+description: Record what your mod for the original OP-1 (firmware 246) uses, or fix a mistake.
+title: "[entry] "
+body:
+  - type: input
+    id: project
+    attributes:
+      label: Mod
+      description: Its name, and a link if it has one.
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: What you're adding or correcting
+      multiple: true
+      options:
+        - Effects
+        - Synth engines
+        - Engines hosted in iter's slot
+        - Drum engines
+        - LFOs
+        - Sequencers
+        - Keys added inside sound files
+        - Key combinations
+        - MIDI
+        - Files and folders
+        - Changes to the firmware files
+        - Memory
+        - Version text
+        - Names a firmware doesn't know
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: entries
+    attributes:
+      label: The entries
+      description: Names, rows, values, paths, whatever applies. Your op1_factory.db rows are the easiest start.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Where it can be checked
+      description: A commit, a manifest or a release (optional).
