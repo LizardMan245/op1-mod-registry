@@ -8,6 +8,13 @@ for 246, add yours: see [Add or correct an entry](#add-or-correct-an-entry).
 
 ## Why it matters
 
+Without a shared list, names collide sooner than anyone expects. On the M-VAVE FM-1, where firmware
+modding took off at the same time, at least six firmwares in its installer hub carry the same identity,
+`FM-1_900`, and "two firmwares with the same identity look like one"
+([dinghy's guide](https://github.com/zvenson/dinghy/blob/main/docs/MAKE-IT-YOURS.md),
+[the hub's catalog](https://fm1.designburgapps.com/catalog.json), October 2026). This list is here so the
+OP-1 doesn't go the same way.
+
 - **Sounds store names.** A saved sound says `"fx_type": "nitro"`, `"type": "digital"`,
   `"lfo_type": "element"`. If two mods use one name for different things, each plays the other's
   sounds wrong. The names are the IDs that matter most.
