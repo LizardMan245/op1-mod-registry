@@ -70,8 +70,8 @@ def check(reg):
         seen = {}
         for e in reg.get(key) or []:
             name, r = e.get("name", ""), e.get("row")
-            if not re.fullmatch(r"[a-z0-9_]+", name):
-                errors.append(f"{key}: name {name!r}: use lowercase letters, digits and _")
+            if not re.fullmatch(r"[a-z0-9_+]+( [a-z0-9_+]+)*", name):   # real names: "drum+", "in a room" (op1r 31)
+                errors.append(f"{key}: name {name!r}: use lowercase letters, digits, _ and +, single spaces between words")
             if not (r is None or isinstance(r, int) or (isinstance(r, list) and r and all(isinstance(x, int) for x in r))):
                 errors.append(f"{key} {name}: row must be a number, a list of numbers or null")
             for other in seen.get(name, []):
