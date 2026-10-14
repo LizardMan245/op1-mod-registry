@@ -125,7 +125,7 @@ def tables(reg):
                 if f == "project":
                     v = name.get(v, v)
                 elif f == "row" and v is None:
-                    v = "none"
+                    v = "-"  # no row (yet): the note says why
                 elif f == "row" and isinstance(v, list):  # rows that depend on the build's options
                     v = " or ".join(map(str, v)) if len(v) == 2 else f"one of {v[0]}-{v[-1]}"
                 vals.append(cell(v))

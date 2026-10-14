@@ -36,6 +36,7 @@ OP-1 doesn't go the same way.
 | [op1r](https://github.com/pcppcp/op1r) | popcorp | op1r 20 (0ed5f5c) |  |
 | Opus | LizardMan | in development | its entries come before its first release |
 | [Oblique Strategies](https://github.com/ultralazr/op1-oblique-strategies) | ultralazr | c909aa4 |  |
+| [Squarewave Studio](https://squarewave.studio) | Joseph Holland | in development | names registered before release; rows, markers, keys and the rest come with its release |
 
 ### Effects (`fx_types`)
 
@@ -75,6 +76,7 @@ Sounds store the engine's name as `type`.
 | supersaw | 12 | op1r |  |
 | fmbell | 13 | op1r |  |
 | granular | 14 | op1r |  |
+| strata | - | Squarewave Studio | in development |
 
 ### Engines hosted in iter's slot
 
@@ -87,6 +89,7 @@ _Nothing recorded yet._
 | name | row | project | note |
 |---|---|---|---|
 | dbox | 1 | stock 246 |  |
+| gin | - | Squarewave Studio | in development |
 
 ### LFOs (`lfo_types`)
 
@@ -100,6 +103,7 @@ _Nothing recorded yet._
 | bend | 6 | stock 246 |  |
 | crank | 7 | stock 246 |  |
 | quad | 8 | op1r | four LFOs |
+| matrix | - | Squarewave Studio | in development; working name |
 
 ### Sequencers (`seq_types`)
 
@@ -113,6 +117,7 @@ _Nothing recorded yet._
 | arpeggio | 6 | stock 246 |  |
 | euclid | 7 | op1r |  |
 | dots | 8 | op1r |  |
+| orbital | - | Squarewave Studio | in development |
 
 ### Keys added inside sound files
 
@@ -199,6 +204,7 @@ What a firmware does with a sound that names an effect or engine it doesn't have
 - stock 246: content/op1_factory.db in op1_246.op1 (SHA-256 c5315218f825f143b415ca554516541898abee843d3a236df0b54c04e1fb13a9)
 - op1r: data/manifest.json (its op1_factory.db edits applied to stock), README.md, CHANGELOG.md
 - Oblique Strategies: patch_oblique.py and README.md (patch list, hook sites); stock output SHA-256 e452aa9576ec8af500442d95bc373eaf2ed9a3634cf5c972c73908067a7ed1db
+- Squarewave Studio: the author's own entry (issue #2, 2026-10-13); not released yet
 
 <!-- tables:end -->
 

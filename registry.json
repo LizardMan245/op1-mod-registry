@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-12",
+  "updated": "2026-10-14",
   "firmware": "original OP-1, firmware 246",
   "projects": {
     "stock": {
@@ -28,6 +28,14 @@
       "url": "https://github.com/ultralazr/op1-oblique-strategies",
       "version": "c909aa4",
       "checked": "patch_oblique.py and README.md (patch list, hook sites); stock output SHA-256 e452aa9576ec8af500442d95bc373eaf2ed9a3634cf5c972c73908067a7ed1db"
+    },
+    "squarewave": {
+      "name": "Squarewave Studio",
+      "by": "Joseph Holland",
+      "url": "https://squarewave.studio",
+      "version": "in development",
+      "note": "names registered before release; rows, markers, keys and the rest come with its release",
+      "checked": "the author's own entry (issue #2, 2026-10-13); not released yet"
     }
   },
   "fx_types": [
@@ -57,11 +65,13 @@
     { "name": "iter", "row": 11, "project": "op1r", "note": "stock's hidden engine: stock has its code but no row" },
     { "name": "supersaw", "row": 12, "project": "op1r" },
     { "name": "fmbell", "row": 13, "project": "op1r" },
-    { "name": "granular", "row": 14, "project": "op1r" }
+    { "name": "granular", "row": 14, "project": "op1r" },
+    { "name": "strata", "row": null, "project": "squarewave", "note": "in development" }
   ],
   "iter_markers": [],
   "drum_types": [
-    { "name": "dbox", "row": 1, "project": "stock" }
+    { "name": "dbox", "row": 1, "project": "stock" },
+    { "name": "gin", "row": null, "project": "squarewave", "note": "in development" }
   ],
   "lfo_types": [
     { "name": "tremolo", "row": 1, "project": "stock" },
@@ -71,7 +81,8 @@
     { "name": "midi", "row": 5, "project": "stock" },
     { "name": "bend", "row": 6, "project": "stock" },
     { "name": "crank", "row": 7, "project": "stock" },
-    { "name": "quad", "row": 8, "project": "op1r", "note": "four LFOs" }
+    { "name": "quad", "row": 8, "project": "op1r", "note": "four LFOs" },
+    { "name": "matrix", "row": null, "project": "squarewave", "note": "in development; working name" }
   ],
   "seq_types": [
     { "name": "pattern", "row": 1, "project": "stock" },
@@ -81,7 +92,8 @@
     { "name": "sketch", "row": 5, "project": "stock" },
     { "name": "arpeggio", "row": 6, "project": "stock" },
     { "name": "euclid", "row": 7, "project": "op1r" },
-    { "name": "dots", "row": 8, "project": "op1r" }
+    { "name": "dots", "row": 8, "project": "op1r" },
+    { "name": "orbital", "row": null, "project": "squarewave", "note": "in development" }
   ],
   "sound_keys": [],
   "keys": [
