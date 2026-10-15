@@ -33,9 +33,9 @@ OP-1 doesn't go the same way.
 | project | by | version | note |
 |---|---|---|---|
 | stock 246 | Teenage Engineering | 246 |  |
-| [op1r](https://github.com/pcppcp/op1r) | popcorp | op1r 20 (0ed5f5c) |  |
+| [op1r](https://github.com/pcppcp/op1r) | popcorp | op1r 31 (380a0af) |  |
 | Opus | LizardMan | in development | its entries come before its first release |
-| [Oblique Strategies](https://github.com/ultralazr/op1-oblique-strategies) | ultralazr | c909aa4 |  |
+| [Oblique Strategies](https://github.com/ultralazr/op1-oblique-strategies) | ultralazr | 1a2f2fe |  |
 | [Squarewave Studio](https://squarewave.studio) | Joseph Holland | in development | names registered before release; rows, markers, keys and the rest come with its release |
 
 ### Effects (`fx_types`)
@@ -55,6 +55,8 @@ Sounds store the effect's name. The row is its row in `content/op1_factory.db`.
 | tape | 11 | op1r | tape echo |
 | clouds | 12 | op1r |  |
 | reverb | 13 | op1r | its screen says "Kali" |
+| palme | 14 | op1r | Musica Obscura by ultralazr; Ondes Martenot diffuseur |
+| in a room | 15 | op1r | Musica Obscura by ultralazr; Lucier's I am sitting in a room. Sounds saved as "sitting" (test builds) load as it |
 
 ### Synth engines (`synth_types`)
 
@@ -77,12 +79,26 @@ Sounds store the engine's name as `type`.
 | fmbell | 13 | op1r |  |
 | granular | 14 | op1r |  |
 | strata | - | Squarewave Studio | in development |
+| mixtur | 15 | op1r | Musica Obscura by ultralazr; Mixtur-Trautonium undertones |
+| arc | 16 | op1r | Musica Obscura by ultralazr; Duddell's singing arc |
 
 ### Engines hosted in iter's slot
 
 A mod can run its engines in the slot of iter, stock's hidden engine. Their sounds then say `"type": "iter"`, so each mod marks which engine a sound is for. Record where the mark goes and its values, so two mods don't use the same one.
 
-_Nothing recorded yet._
+| marker | where | engine | project |
+|---|---|---|---|
+| synth 21249 (0x5300 + 1) | knobs[4] of a sound with "type": "iter" | supersaw | op1r |
+| synth 21250 (0x5300 + 2) | knobs[4] of a sound with "type": "iter" | fmbell | op1r |
+| synth 21251 (0x5300 + 3) | knobs[4] of a sound with "type": "iter" | granular | op1r |
+| synth 21256 (0x5300 + 8) | knobs[4] of a sound with "type": "iter" | mixtur | op1r |
+| synth 21257 (0x5300 + 9) | knobs[4] of a sound with "type": "iter" | arc | op1r |
+| FX 21249 (0x5300 + 1) | knobs[4] of an effect with "fx_type": "filter" (op1r runs its FX in the filter slot) | tape | op1r |
+| FX 21250 (0x5300 + 2) | knobs[4] of an effect with "fx_type": "filter" (op1r runs its FX in the filter slot) | clouds | op1r |
+| FX 21251 (0x5300 + 3) | knobs[4] of an effect with "fx_type": "filter" (op1r runs its FX in the filter slot) | reverb | op1r |
+| FX 21254 (0x5300 + 6) | knobs[4] of an effect with "fx_type": "filter" (op1r runs its FX in the filter slot) | palme | op1r |
+| FX 21255 (0x5300 + 7) | knobs[4] of an effect with "fx_type": "filter" (op1r runs its FX in the filter slot) | in a room | op1r |
+| 0x5300 + 4 … 7 (synth), 0x5300 + 4, 5 (FX) | reserved in op1r-src plugins/ORDERS.md | Hundekraft's workshop engines and effects (wavetable, taffy, pew, elg; washer, snowglobe) | op1r |
 
 ### Drum engines (`drum_types`)
 
@@ -90,6 +106,7 @@ _Nothing recorded yet._
 |---|---|---|---|
 | dbox | 1 | stock 246 |  |
 | gin | - | Squarewave Studio | in development |
+| drum+ | 2 | op1r | since op1r 30 |
 
 ### LFOs (`lfo_types`)
 
@@ -118,6 +135,8 @@ _Nothing recorded yet._
 | euclid | 7 | op1r |  |
 | dots | 8 | op1r |  |
 | orbital | - | Squarewave Studio | in development |
+| oracle | 9 | op1r | Musica Obscura by ultralazr; geomancy shield chart. "shield" (test builds) maps to it |
+| peal | 10 | op1r | Musica Obscura by ultralazr; change ringing |
 
 ### Keys added inside sound files
 
@@ -131,7 +150,7 @@ Combinations a mod takes outside its own screens.
 
 | keys | where | what | project |
 |---|---|---|---|
-| shift + C# | any screen | starts or stops all sequencer slots | op1r |
+| shift + C# | any screen | starts or stops all sequencer slots (euclid, dots; oracle and peal too) | op1r |
 | shift + F, G, A, B (the first four white keys) | any screen | pattern 1-4 | op1r |
 | shift + G, A, B, C, D, E (the last six white keys) | any screen | mutes sequencer slots 1-6 | op1r |
 | shift + D# | any screen | mutes all sequencer slots | op1r |
@@ -141,6 +160,8 @@ Combinations a mod takes outside its own screens.
 | shift + orange encoder press | the tape screen | removes the marker under the cursor; the same press as Oblique Strategies' card | op1r |
 | shift + orange encoder turn | the tape screen | jumps to the next / previous marker (stock: the record level) | op1r |
 | shift + press the orange encoder | any screen | shows a random Oblique Strategies card; while it shows, any key closes it and that press does nothing else. On top of op1r it runs before op1r's key handling, so it would take op1r's shift + red on the dots and euclid screens if that means the red encoder press (not checked) | Oblique Strategies |
+| shift + help | any screen (the clock screen) | shows a random Oblique Strategies card in the clock's place; shift + help again switches card / clock (since op1r 21). The standalone Oblique Strategies mod uses shift + orange encoder press instead | op1r |
+| hold a note key (shift + key latches) | any screen, while oracle or peal is the sequencer | oracle plays transposed to the key; peal rings the held keys (3–8) as bells, like the stock sequencers | op1r |
 
 ### MIDI
 
@@ -159,7 +180,7 @@ Files a mod adds to the update package, and files and folders it writes on the O
 
 | path | project |
 |---|---|
-| content/display/cloudsfx.svg, dots.svg, euclid.svg, fmbell.svg, fxgeneric.svg, granular.svg, iterlab.svg, kalireverb.svg, quadlfo.svg, supersaw.svg, sysmon.svg, tapeecho.svg, usbout.svg | op1r |
+| content/display/cloudsfx.svg, dots.svg, duddell.svg, euclid.svg, fmbell.svg, fxgeneric.svg, granular.svg, iterlab.svg, kalireverb.svg, lucierroom.svg, mixtur.svg, oracle.svg, palmediff.svg, peal.svg, quadlfo.svg, supersaw.svg, sysmon.svg, tapeecho.svg, usbout.svg | op1r |
 
 ### Changes to the firmware files
 
@@ -167,8 +188,8 @@ Where a mod changes the files in the update package. Two mods that change the sa
 
 | file | change | project |
 |---|---|---|
-| OP1_vdk.ldr | 64 replaced ranges and a 222,888-byte block inserted at offset 2,171,351; the full list is in data/manifest.json | op1r |
-| content/op1_factory.db | 14 edits (the rows above) | op1r |
+| OP1_vdk.ldr | 76 replaced ranges and a 251,652-byte block inserted at offset 2,171,351; the full list is in data/manifest.json | op1r |
+| content/op1_factory.db | 16 edits (the rows above) | op1r |
 | OP1_vdk.ldr | CALLs at 0x019C2D3E (key handler, also patched by op1r: it chains to whatever is there) and 0x01A3BC0E (end of the GUI frame) redirected; an 8,360-byte block inserted before the FINAL block; the FIRST block's length and checksum | Oblique Strategies |
 
 ### Memory
@@ -177,8 +198,9 @@ RAM a mod's code and data use while the OP-1 runs.
 
 | range | what | project |
 |---|---|---|
-| 0x01E00000-0x01E36660 | code and data (one LDR block; 0x01E32070 in op1r 18) | op1r |
+| 0x01E00000-0x01E3D6AC | code and data (one LDR block, op1r 31; it stays below 0x01E40000) | op1r |
 | 0x01E40000-0x01E420A8 | code, card text and state (one LDR block) | Oblique Strategies |
+| 0x01EC0000-0x01EECEA4 | zeroed data (an LDR fill block, op1r 31) | op1r |
 
 ### Version text
 
@@ -187,7 +209,7 @@ What a build calls itself, so bug reports and tools can tell builds apart.
 | project | version string | shown |
 |---|---|---|
 | stock 246 | R. 00246 |  |
-| op1r |  op1r 20 (in place of R. 00246) | the boot screen shows op1r and its version under the TE logo |
+| op1r |  op1r 31 (in place of R. 00246) | the boot screen shows op1r and its version under the TE logo |
 | Oblique Strategies | unchanged |  |
 
 ### Names a firmware doesn't know
@@ -197,12 +219,12 @@ What a firmware does with a sound that names an effect or engine it doesn't have
 | firmware | unknown effect | unknown engine |
 |---|---|---|
 | stock 246 | crashes ([op-forums #945](https://op-forums.com/t/4283/945)) | locks up with "patch.cpp:390 Invalid synth patch" (op1r's changelog, op1r 18) |
-| op1r | not documented | loads the sound as iter (since op1r 18) |
+| op1r | an unknown name stops the OP-1 at boot, as on stock (fx_types.cpp:42); an op1r effect number with no plugin in the build plays the filter | loads the sound as iter (since op1r 18); an engine number with no plugin plays iter |
 
 ### How each was checked
 
 - stock 246: content/op1_factory.db in op1_246.op1 (SHA-256 c5315218f825f143b415ca554516541898abee843d3a236df0b54c04e1fb13a9)
-- op1r: data/manifest.json (its op1_factory.db edits applied to stock), README.md, CHANGELOG.md
+- op1r: data/manifest.json and the patched op1_factory.db of op1r 31 (output SHA-256 b79949491d19ec803d71f9e76d154689556669d4af8f000ec96d39834484e180), README.md, CHANGELOG.md, op1r-src plugins/ORDERS.md
 - Oblique Strategies: patch_oblique.py and README.md (patch list, hook sites); stock output SHA-256 e452aa9576ec8af500442d95bc373eaf2ed9a3634cf5c972c73908067a7ed1db
 - Squarewave Studio: the author's own entry (issue #2, 2026-10-13); not released yet
 
