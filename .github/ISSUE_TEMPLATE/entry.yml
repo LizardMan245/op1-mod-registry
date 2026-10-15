@@ -17,7 +17,7 @@ body:
       options:
         - Effects
         - Synth engines
-        - Engines hosted in iter's slot
+        - Engines and effects hosted in another's slot
         - Drum engines
         - LFOs
         - Sequencers

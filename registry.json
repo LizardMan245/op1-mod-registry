@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-14",
+  "updated": "2026-10-15",
   "firmware": "original OP-1, firmware 246",
   "projects": {
     "stock": {
@@ -13,14 +13,16 @@
       "name": "op1r",
       "by": "popcorp",
       "url": "https://github.com/pcppcp/op1r",
-      "version": "op1r 31 (380a0af)",
-      "checked": "data/manifest.json and the patched op1_factory.db of op1r 31 (output SHA-256 b79949491d19ec803d71f9e76d154689556669d4af8f000ec96d39834484e180), README.md, CHANGELOG.md, op1r-src plugins/ORDERS.md"
+      "version": "op1r 35 (1eadb87)",
+      "checked": "data/manifest.json (its op1_factory.db edits applied to stock) and its inserted LDR block, op1r 35 (output SHA-256 061d85652ed1892a57ed37c4d0e6b4d85f348d73700ccd07879d60d6b5788d55, all plugins), README.md, CHANGELOG.md; op1r-src synth_sdk/plugins/ORDERS.md, op1_plugin.h, plugload/plugload.c, devupd/du.h"
     },
     "opus": {
       "name": "Opus",
       "by": "LizardMan",
-      "version": "in development",
-      "note": "its entries come before its first release"
+      "url": "https://opus-op1.pages.dev",
+      "version": "1.0.1 (build 90)",
+      "note": "adds its effect rows by name when the OP-1 starts (the next free rows), so it holds no fixed row numbers; its engines run in iter's slot",
+      "checked": "its update file op1_246_opus.op1 (SHA-256 b4e37fc48fecbb83d71923bc34c209bf7cc4b7658f0c24b4b33888199f7adbc2) and its source"
     },
     "oblique": {
       "name": "Oblique Strategies",
@@ -47,11 +49,15 @@
     { "name": "cwo", "row": 9, "project": "stock" },
     { "name": "nitro", "row": 10, "project": "stock" },
     { "name": "filter", "row": 2, "project": "op1r", "note": "stock's hidden 4-pole filter: stock plays it but doesn't list it" },
-    { "name": "tape", "row": 11, "project": "op1r", "note": "tape echo" },
-    { "name": "clouds", "row": 12, "project": "op1r" },
-    { "name": "reverb", "row": 13, "project": "op1r", "note": "its screen says \"Kali\"" },
-    { "name": "palme", "row": 14, "project": "op1r", "note": "Musica Obscura by ultralazr; Ondes Martenot diffuseur" },
-    { "name": "in a room", "row": 15, "project": "op1r", "note": "Musica Obscura by ultralazr; Lucier's I am sitting in a room. Sounds saved as \"sitting\" (test builds) load as it" }
+    { "name": "tape", "row": null, "project": "op1r", "note": "tape echo; a plugin file (since op1r 34): its row is added at start-up (11 with all of op1r's plugins on a stock database)" },
+    { "name": "clouds", "row": null, "project": "op1r", "note": "a plugin file (since op1r 34): its row is added at start-up (12 with all of op1r's plugins on a stock database)" },
+    { "name": "reverb", "row": null, "project": "op1r", "note": "its screen says \"Kali\"; a plugin file (since op1r 34): its row is added at start-up (13 with all of op1r's plugins on a stock database)" },
+    { "name": "palme", "row": null, "project": "op1r", "note": "Musica Obscura by ultralazr; Ondes Martenot diffuseur; a plugin file (since op1r 34): its row is added at start-up (14 with all of op1r's plugins on a stock database)" },
+    { "name": "in a room", "row": null, "project": "op1r", "note": "Musica Obscura by ultralazr; Lucier's I am sitting in a room. Sounds saved as \"sitting\" (test builds) load as it; a plugin file (since op1r 34): its row is added at start-up (15 with all of op1r's plugins on a stock database)" },
+    { "name": "filter", "row": null, "project": "opus", "note": "the same hidden filter as op1r's; row added at start-up (11 on a stock database)", "same_as": "op1r" },
+    { "name": "bitcrush", "row": null, "project": "opus", "note": "row added at start-up (12 on a stock database)" },
+    { "name": "chorus", "row": null, "project": "opus", "note": "row added at start-up (13 on a stock database)" },
+    { "name": "plate", "row": null, "project": "opus", "note": "a reverb; row added at start-up (14 on a stock database)" }
   ],
   "synth_types": [
     { "name": "cluster", "row": 1, "project": "stock" },
@@ -65,12 +71,16 @@
     { "name": "dsynth", "row": 9, "project": "stock" },
     { "name": "voltage", "row": 10, "project": "stock" },
     { "name": "iter", "row": 11, "project": "op1r", "note": "stock's hidden engine: stock has its code but no row" },
-    { "name": "supersaw", "row": 12, "project": "op1r" },
-    { "name": "fmbell", "row": 13, "project": "op1r" },
-    { "name": "granular", "row": 14, "project": "op1r" },
+    { "name": "supersaw", "row": null, "project": "op1r", "note": "a plugin file (since op1r 34): its row is added at start-up (12 with all of op1r's plugins on a stock database)" },
+    { "name": "fmbell", "row": null, "project": "op1r", "note": "a plugin file (since op1r 34): its row is added at start-up (13 with all of op1r's plugins on a stock database)" },
+    { "name": "granular", "row": null, "project": "op1r", "note": "a plugin file (since op1r 34): its row is added at start-up (14 with all of op1r's plugins on a stock database)" },
     { "name": "strata", "row": null, "project": "squarewave", "note": "in development" },
-    { "name": "mixtur", "row": 15, "project": "op1r", "note": "Musica Obscura by ultralazr; Mixtur-Trautonium undertones" },
-    { "name": "arc", "row": 16, "project": "op1r", "note": "Musica Obscura by ultralazr; Duddell's singing arc" }
+    { "name": "mixtur", "row": null, "project": "op1r", "note": "Musica Obscura by ultralazr; Mixtur-Trautonium undertones; a plugin file (since op1r 34): its row is added at start-up (15 with all of op1r's plugins on a stock database)" },
+    { "name": "arc", "row": null, "project": "op1r", "note": "Musica Obscura by ultralazr; Duddell's singing arc; a plugin file (since op1r 34): its row is added at start-up (16 with all of op1r's plugins on a stock database)" },
+    { "name": "aether", "row": null, "project": "op1r", "note": "a tilt theremin (the motion sensor), since op1r 33; a plugin file (since op1r 34): its row is added at start-up (17 with all of op1r's plugins on a stock database)" },
+    { "name": "iter", "row": null, "project": "opus", "note": "not in Opus's engine list: Opus's own engines run in its slot. At start Opus deletes a row 11 named iter (its own builds 29-57 added it; op1r uses that row too)", "same_as": "op1r" },
+    { "name": "dimension", "row": null, "project": "opus", "note": "runs in iter's slot: marker 0x4F01" },
+    { "name": "amp", "row": null, "project": "opus", "note": "guitar amp; runs in iter's slot: marker 0x4F02" }
   ],
   "iter_markers": [
     { "marker": "synth 21249 (0x5300 + 1)", "where": "knobs[4] of a sound with \"type\": \"iter\"", "name": "supersaw", "project": "op1r" },
@@ -78,12 +88,16 @@
     { "marker": "synth 21251 (0x5300 + 3)", "where": "knobs[4] of a sound with \"type\": \"iter\"", "name": "granular", "project": "op1r" },
     { "marker": "synth 21256 (0x5300 + 8)", "where": "knobs[4] of a sound with \"type\": \"iter\"", "name": "mixtur", "project": "op1r" },
     { "marker": "synth 21257 (0x5300 + 9)", "where": "knobs[4] of a sound with \"type\": \"iter\"", "name": "arc", "project": "op1r" },
+    { "marker": "synth 21258 (0x5300 + 10)", "where": "knobs[4] of a sound with \"type\": \"iter\"", "name": "aether", "project": "op1r" },
     { "marker": "FX 21249 (0x5300 + 1)", "where": "knobs[4] of an effect with \"fx_type\": \"filter\" (op1r runs its FX in the filter slot)", "name": "tape", "project": "op1r" },
     { "marker": "FX 21250 (0x5300 + 2)", "where": "knobs[4] of an effect with \"fx_type\": \"filter\" (op1r runs its FX in the filter slot)", "name": "clouds", "project": "op1r" },
     { "marker": "FX 21251 (0x5300 + 3)", "where": "knobs[4] of an effect with \"fx_type\": \"filter\" (op1r runs its FX in the filter slot)", "name": "reverb", "project": "op1r" },
     { "marker": "FX 21254 (0x5300 + 6)", "where": "knobs[4] of an effect with \"fx_type\": \"filter\" (op1r runs its FX in the filter slot)", "name": "palme", "project": "op1r" },
     { "marker": "FX 21255 (0x5300 + 7)", "where": "knobs[4] of an effect with \"fx_type\": \"filter\" (op1r runs its FX in the filter slot)", "name": "in a room", "project": "op1r" },
-    { "marker": "0x5300 + 4 … 7 (synth), 0x5300 + 4, 5 (FX)", "where": "reserved in op1r-src plugins/ORDERS.md", "name": "Hundekraft's workshop engines and effects (wavetable, taffy, pew, elg; washer, snowglobe)", "project": "op1r" }
+    { "marker": "0x5300 + 4 … 7 (synth), 0x5300 + 4, 5 (FX)", "where": "reserved in op1r-src synth_sdk/plugins/ORDERS.md", "name": "Hundekraft's workshop engines and effects (wavetable, taffy, pew, elg; washer, snowglobe)", "project": "op1r" },
+    { "marker": "0x5300 + 32 … 63 (synth and FX)", "where": "knobs[4], as above", "name": "plugin files without a number of their own: each OP-1 gives them one at start-up and keeps it (op1.db, table op1rplugins). 1 … 31 are for the numbers in ORDERS.md", "project": "op1r" },
+    { "marker": "0x4F01", "where": "knobs[4] of a sound with \"type\": \"iter\"", "name": "dimension", "project": "opus" },
+    { "marker": "0x4F02", "where": "knobs[4] of a sound with \"type\": \"iter\"", "name": "amp", "project": "opus" }
   ],
   "drum_types": [
     { "name": "dbox", "row": 1, "project": "stock" },
@@ -114,47 +128,91 @@
     { "name": "oracle", "row": 9, "project": "op1r", "note": "Musica Obscura by ultralazr; geomancy shield chart. \"shield\" (test builds) maps to it" },
     { "name": "peal", "row": 10, "project": "op1r", "note": "Musica Obscura by ultralazr; change ringing" }
   ],
-  "sound_keys": [],
+  "sound_keys": [
+    { "key": "op1r", "what": "drum+'s settings per pad, in a drum kit (since op1r 30); stock loads the kit as a normal drum", "project": "op1r" },
+    { "key": "opus", "what": "Opus's member: \"v\" and \"uses\" (the Opus parts a sound needs, by plugin ID, e.g. \"opus.dimension\": 1), and the second effect: fx2_type (by name), fx2_active, fx2_params", "project": "opus" }
+  ],
   "keys": [
     { "keys": "shift + C#", "where": "any screen", "what": "starts or stops all sequencer slots (euclid, dots; oracle and peal too)", "project": "op1r" },
     { "keys": "shift + F, G, A, B (the first four white keys)", "where": "any screen", "what": "pattern 1-4", "project": "op1r" },
     { "keys": "shift + G, A, B, C, D, E (the last six white keys)", "where": "any screen", "what": "mutes sequencer slots 1-6", "project": "op1r" },
     { "keys": "shift + D#", "where": "any screen", "what": "mutes all sequencer slots", "project": "op1r" },
     { "keys": "T1", "where": "the clock screen (shift + help)", "what": "resource monitor", "project": "op1r" },
-    { "keys": "T2", "where": "the clock screen (shift + help)", "what": "USB out page (master, or master + the four tape tracks)", "project": "op1r" },
+    { "keys": "T2", "where": "the clock screen (shift + help)", "what": "USB out page (blue: master, or master + the four tape tracks; green: MIDI SEQ on / off, since op1r 35)", "project": "op1r" },
+    { "keys": "T3", "where": "the clock screen (shift + help)", "what": "settings page: the count-in's length (since op1r 22)", "project": "op1r" },
     { "keys": "orange encoder press (op1r calls it red)", "where": "the tape screen", "what": "sets a tape marker", "project": "op1r" },
     { "keys": "shift + orange encoder press", "where": "the tape screen", "what": "removes the marker under the cursor; the same press as Oblique Strategies' card", "project": "op1r" },
     { "keys": "shift + orange encoder turn", "where": "the tape screen", "what": "jumps to the next / previous marker (stock: the record level)", "project": "op1r" },
     { "keys": "shift + press the orange encoder", "where": "any screen", "what": "shows a random Oblique Strategies card; while it shows, any key closes it and that press does nothing else. On top of op1r it runs before op1r's key handling, so it would take op1r's shift + red on the dots and euclid screens if that means the red encoder press (not checked)", "project": "oblique" },
-    { "keys": "shift + help", "where": "any screen (the clock screen)", "what": "shows a random Oblique Strategies card in the clock's place; shift + help again switches card / clock (since op1r 21). The standalone Oblique Strategies mod uses shift + orange encoder press instead", "project": "op1r" },
-    { "keys": "hold a note key (shift + key latches)", "where": "any screen, while oracle or peal is the sequencer", "what": "oracle plays transposed to the key; peal rings the held keys (3–8) as bells, like the stock sequencers", "project": "op1r" }
+    { "keys": "shift + help", "where": "the clock screen", "what": "shows a random Oblique Strategies card in the clock's place; again switches card / clock (since op1r 21; stock: does nothing there). The standalone Oblique Strategies mod uses shift + orange encoder press instead", "project": "op1r" },
+    { "keys": "hold a note key (shift + key latches)", "where": "any screen, while oracle or peal is the sequencer", "what": "oracle plays transposed to the key; peal rings the held keys (3–8) as bells, like the stock sequencers", "project": "op1r" },
+    { "keys": "hold REC + metronome", "where": "any screen, the tape stopped", "what": "count-in (4 / 8 / 16 clicks), then recording starts; again cancels (since op1r 22)", "project": "op1r" },
+    { "keys": "hold tape + REC", "where": "any screen", "what": "arms punch in / out at the tape markers; again cancels (since op1r 23)", "project": "op1r" },
+    { "keys": "hold synth + scissors", "where": "the sampler page", "what": "the sample editor (since op1r 24)", "project": "op1r" },
+    { "keys": "hold drum + scissors", "where": "the drum page", "what": "the drum sample editor (since op1r 25)", "project": "op1r" },
+    { "keys": "sequencer + tape", "where": "any screen, with MIDI SEQ on (clock screen, T2)", "what": "op1r's 4-track MIDI sequencer; with MIDI SEQ off it does what stock does (since op1r 35)", "project": "op1r" },
+    { "keys": "synth + drum + tape + mixer, held together", "where": "any screen", "what": "Opus's menu (stock: the helicopter game)", "project": "opus" },
+    { "keys": "tape + left / tape + right", "where": "any screen", "what": "tape undo / redo", "project": "opus" },
+    { "keys": "shift + left / shift + right", "where": "any screen", "what": "pitch bend down / up", "project": "opus" },
+    { "keys": "hold synth or drum + s1-s8 through the save clock", "where": "any screen", "what": "overwrite save", "project": "opus" },
+    { "keys": "push blue / push green", "where": "a synth engine's T1 screen", "what": "the scales / chords quick menu", "project": "opus" },
+    { "keys": "shift + push white / shift + push orange", "where": "the synth's pages", "what": "dice: a random sound / undo (shift + orange press is also Oblique Strategies' card)", "project": "opus" },
+    { "keys": "push white / push orange; white / orange turn", "where": "the synth's shift page (synth, T2, hold shift)", "what": "pitch bend: up / down depth; curve / speed", "project": "opus" },
+    { "keys": "shift + white turn", "where": "the tape screen", "what": "zooms the tape view (plain white still sets the tape's speed)", "project": "opus" },
+    { "keys": "push orange", "where": "the preset browser (shift + s1-s8), on your own presets", "what": "rename", "project": "opus" },
+    { "keys": "play / stop", "where": "the tape, with \"play pause\" on in Opus's menu", "what": "play pauses; stop jumps back and plays on", "project": "opus" },
+    { "keys": "green", "where": "the effect list (shift + T3), with fx overdrive on", "what": "chooses the second effect", "project": "opus" },
+    { "keys": "push blue; T3", "where": "an effect page, with fx overdrive on", "what": "switches between the two effects' screens; the second effect on / off", "project": "opus" }
   ],
   "midi": [
     { "message": "CC 5-52", "what": "the keys, as in the OP-1's own CTRL mode (key code + 5)", "project": "op1r" },
     { "message": "CC 102-105", "what": "the four encoders, relative", "project": "op1r" },
     { "message": "CC 106-118", "what": "mixer volume, pan and mute per track, tape input", "project": "op1r" },
-    { "message": "SysEx F0 00 20 76 00 01 03 F7 / ... 00 F7", "what": "OP-Z controller mode on / off", "project": "op1r" }
+    { "message": "CC 53-60, 72-79", "what": "synth automation of the current synth slot, absolute: 53-56 engine knobs, 57-60 envelope A/D/S/R, 72-75 FX knobs, 76-79 LFO knobs (since op1r 35)", "project": "op1r" },
+    { "message": "SysEx F0 00 20 76 00 01 03 F7 / ... 00 F7", "what": "OP-Z controller mode on / off", "project": "op1r" },
+    { "message": "SysEx F0 00 20 76 7D <cmd> ... F7", "what": "firmware and plugin update over USB: files are staged, the OP-1 asks before applying them (since op1r 31; 00 20 76 is Teenage Engineering's maker ID)", "project": "op1r" },
+    { "message": "a second USB MIDI port", "what": "the dev port; in the release it answers ping and version only", "project": "opus" }
   ],
   "files": [
-    { "path": "content/display/cloudsfx.svg, dots.svg, duddell.svg, euclid.svg, fmbell.svg, fxgeneric.svg, granular.svg, iterlab.svg, kalireverb.svg, lucierroom.svg, mixtur.svg, oracle.svg, palmediff.svg, peal.svg, quadlfo.svg, supersaw.svg, sysmon.svg, tapeecho.svg, usbout.svg", "project": "op1r" }
+    { "path": "content/display/dots.svg, euclid.svg, fxgeneric.svg, iterlab.svg, oracle.svg, peal.svg, quadlfo.svg, sysmon.svg, usbout.svg (the plugins' screens are inside their files)", "project": "op1r" },
+    { "path": "plugins/<name>.op1p in the update package; on the OP-1 /yaffs2/plugins/<name>.op1p and /yaffs2/plugins/.boot (a crash marker: found at start-up, all plugin files are skipped once)", "project": "op1r" },
+    { "path": "/yaffs2/op1r_stage/ (updates over USB, staged until applied)", "project": "op1r" },
+    { "path": "/yaffs2/user/op1r_seq.mseq (the MIDI sequencer's song)", "project": "op1r" },
+    { "path": "op1.db: the table op1rplugins (plugin files' numbers)", "project": "op1r" },
+    { "path": "content/opus.txt (added: marks an Opus install), content/display/save.svg (replaced: the save overlay with \"overwriting\")", "project": "opus" },
+    { "path": "/yaffs2/mod/ (settings.a, settings.b, clean, cleaned, themes/, splash/; the USB disk shows /themes and /splash)", "project": "opus" },
+    { "path": "/yaffs2/user/tapeundo0.tmp, tapeundo1.tmp, tapeundo2.tmp", "project": "opus" },
+    { "path": "op1.db: the table opus_kept (the cleaner's copies)", "project": "opus" }
   ],
   "firmware_patches": [
-    { "file": "OP1_vdk.ldr", "change": "76 replaced ranges and a 251,652-byte block inserted at offset 2,171,351; the full list is in data/manifest.json", "project": "op1r" },
-    { "file": "content/op1_factory.db", "change": "16 edits (the rows above)", "project": "op1r" },
-    { "file": "OP1_vdk.ldr", "change": "CALLs at 0x019C2D3E (key handler, also patched by op1r: it chains to whatever is there) and 0x01A3BC0E (end of the GUI frame) redirected; an 8,360-byte block inserted before the FINAL block; the FIRST block's length and checksum", "project": "oblique" }
+    { "file": "OP1_vdk.ldr", "change": "86 replaced ranges and a 181,708-byte block inserted at offset 2,171,351, among them the CALL at 0x019F02EE (Clips::load: the plugin loader); the full list is in data/manifest.json", "project": "op1r" },
+    { "file": "content/op1_factory.db", "change": "15 edits: the fixed rows above (filter, iter, drum+, the sequencers); the plugins' rows are added at start-up", "project": "op1r" },
+    { "file": "OP1_vdk.ldr", "change": "CALLs at 0x019C2D3E (key handler, also patched by op1r: it chains to whatever is there) and 0x01A3BC0E (end of the GUI frame) redirected; an 8,360-byte block inserted before the FINAL block; the FIRST block's length and checksum", "project": "oblique" },
+    { "file": "OP1_vdk.ldr", "change": "222 changed ranges (838 bytes) in 17 of the OS's blocks, among them the key handler's CALL at 0x019C2D3E (also redirected by op1r and Oblique Strategies); a 284,556-byte block loaded at 0x01E00000 and a zero-filled block after it", "project": "opus" },
+    { "file": "content/display/save.svg", "change": "replaced (overwrite save's screen)", "project": "opus" }
   ],
   "memory": [
-    { "range": "0x01E00000-0x01E3D6AC", "what": "code and data (one LDR block, op1r 31; it stays below 0x01E40000)", "project": "op1r" },
+    { "range": "0x01E00000-0x01E2C574", "what": "code and data (one LDR block, op1r 35; it stays below 0x01E40000)", "project": "op1r" },
     { "range": "0x01E40000-0x01E420A8", "what": "code, card text and state (one LDR block)", "project": "oblique" },
-    { "range": "0x01EC0000-0x01EECEA4", "what": "zeroed data (an LDR fill block, op1r 31)", "project": "op1r" }
+    { "range": "0x01EC0000-0x01EEA0CC", "what": "zeroed data (an LDR fill block, op1r 35)", "project": "op1r" },
+    { "range": "0xFFA0BFB4-0xFFA0BFDC", "what": "40 bytes in L1 instruction memory (an LDR block)", "project": "op1r" },
+    { "range": "the heap (malloc)", "what": "plugin files' code and data, loaded at start-up", "project": "op1r" },
+    { "range": "0x01E00000-0x01E4578C", "what": "code and data (one LDR block)", "project": "opus" },
+    { "range": "0x01E4578C-0x01EF3228", "what": "zeroed state (a FILL block)", "project": "opus" },
+    { "range": "0x01F00000-0x01F40000", "what": "the menu's page cache", "project": "opus" },
+    { "range": "0x01F40000-0x01F5E000", "what": "colours' tables", "project": "opus" },
+    { "range": "0x01F60000-0x01FA0000", "what": "the plate's second-effect tanks", "project": "opus" },
+    { "range": "0x01FA0000-0x02000000", "what": "large buffers, cleared at start-up", "project": "opus" }
   ],
   "build_id": [
     { "project": "stock", "version_string": "R. 00246", "shown": "" },
-    { "project": "op1r", "version_string": " op1r 31 (in place of R. 00246)", "shown": "the boot screen shows op1r and its version under the TE logo" },
-    { "project": "oblique", "version_string": "unchanged", "shown": "" }
+    { "project": "op1r", "version_string": " op1r 35 (in place of R. 00246)", "shown": "the boot screen shows op1r and its version under the TE logo" },
+    { "project": "oblique", "version_string": "unchanged", "shown": "" },
+    { "project": "opus", "version_string": "unchanged (R. 00246)", "shown": "Opus's menu: hold help for \"opus 1\" and the build" }
   ],
   "unknown_names": [
     { "project": "stock", "effect": "crashes ([op-forums #945](https://op-forums.com/t/4283/945))", "engine": "locks up with \"patch.cpp:390 Invalid synth patch\" (op1r's changelog, op1r 18)" },
-    { "project": "op1r", "effect": "an unknown name stops the OP-1 at boot, as on stock (fx_types.cpp:42); an op1r effect number with no plugin in the build plays the filter", "engine": "loads the sound as iter (since op1r 18); an engine number with no plugin plays iter" }
+    { "project": "op1r", "effect": "loads the sound with the filter (since op1r 34; before, an unknown name stopped the OP-1 at boot, as on stock); an effect number with no plugin plays the filter", "engine": "loads the sound as iter (since op1r 18); an engine number with no plugin plays iter" },
+    { "project": "opus", "effect": "plays it as cwo, switched off; the sound itself is never rewritten", "engine": "plays a stand-in (the first cluster preset) and the browser says \"incompatible preset\"; the sound is never rewritten. An iter sound without one of Opus's markers counts as unknown" }
   ]
 }

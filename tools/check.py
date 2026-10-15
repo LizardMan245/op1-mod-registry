@@ -21,11 +21,12 @@ NAMED = {
 }
 # (key, title, one line, [(column label, field)])
 LISTS = {
-    "iter_markers": ("Engines hosted in iter's slot",
-                     "A mod can run its engines in the slot of iter, stock's hidden engine. Their sounds then say "
-                     "`\"type\": \"iter\"`, so each mod marks which engine a sound is for. Record where the mark "
-                     "goes and its values, so two mods don't use the same one.",
-                     [("marker", "marker"), ("where", "where"), ("engine", "name"), ("project", "project")]),
+    "iter_markers": ("Engines and effects hosted in another's slot",
+                     "A mod can run its engines in the slot of iter, stock's hidden engine, and its effects in the "
+                     "slot of the hidden filter. Their sounds then say `\"type\": \"iter\"` (or `\"fx_type\": "
+                     "\"filter\"`), so each mod marks which one a sound is for. Record where the mark goes and its "
+                     "values, so two mods don't use the same one.",
+                     [("marker", "marker"), ("where", "where"), ("engine or effect", "name"), ("project", "project")]),
     "sound_keys": ("Keys added inside sound files",
                    "Sounds are JSON. Record any key a mod adds, so two mods don't use one key for different things.",
                    [("key", "key"), ("what", "what"), ("project", "project")]),
