@@ -34,7 +34,7 @@ OP-1 doesn't go the same way.
 |---|---|---|---|
 | stock 246 | Teenage Engineering | 246 |  |
 | [op1r](https://github.com/pcppcp/op1r) | popcorp | op1r 35 (1eadb87) |  |
-| [Opus](https://opus-op1.pages.dev) | LizardMan | 1.0.1 (build 90) | adds its effect rows by name when the OP-1 starts (the next free rows), so it holds no fixed row numbers; its engines run in iter's slot |
+| [Opus](https://opus-op1.pages.dev) | LizardMan | 2 beta 1 (build 1, core 2.7) | a core and plugins: each feature a file (.opmod) in /mods on the USB disk; a row naming a plugin (opus.NAME) is there only while its file is. Effect rows are added by name when the effect list first opens, and a row whose type neither the OS nor a loaded plugin knows is deleted then (op1r's too, unless the bridge runs that effect). Engines run in iter's slot. The bridge (opus.bridge, beside the starter pack) runs op1r's .op1p and Hundekraft's .knl files with their own names and op1r's numbers |
 | [Oblique Strategies](https://github.com/ultralazr/op1-oblique-strategies) | ultralazr | 1a2f2fe |  |
 | [Squarewave Studio](https://squarewave.studio) | Joseph Holland | in development | names registered before release; rows, markers, keys and the rest come with its release |
 
@@ -57,10 +57,10 @@ Sounds store the effect's name. The row is its row in `content/op1_factory.db`.
 | reverb | - | op1r | its screen says "Kali"; a plugin file (since op1r 34): its row is added at start-up (13 with all of op1r's plugins on a stock database) |
 | palme | - | op1r | Musica Obscura by ultralazr; Ondes Martenot diffuseur; a plugin file (since op1r 34): its row is added at start-up (14 with all of op1r's plugins on a stock database) |
 | in a room | - | op1r | Musica Obscura by ultralazr; Lucier's I am sitting in a room. Sounds saved as "sitting" (test builds) load as it; a plugin file (since op1r 34): its row is added at start-up (15 with all of op1r's plugins on a stock database) |
-| filter | - | Opus | the same hidden filter as op1r's; row added at start-up (11 on a stock database) |
-| bitcrush | - | Opus | row added at start-up (12 on a stock database) |
-| chorus | - | Opus | row added at start-up (13 on a stock database) |
-| plate | - | Opus | a reverb; row added at start-up (14 on a stock database) |
+| filter | - | Opus | the OS's hidden filter, listed by opus.filter; row added when the effect list first opens (14 on a stock database with the whole pack, 11 on one that ran Opus 1) |
+| bitcrush | - | Opus | opus.bitcrush; row added when the effect list first opens (11 on a stock database with the whole pack, 12 on one that ran Opus 1) |
+| chorus | - | Opus | opus.chorus; row added when the effect list first opens (12 on a stock database with the whole pack, 13 on one that ran Opus 1) |
+| plate | - | Opus | a reverb, opus.plate; row added when the effect list first opens (13 on a stock database with the whole pack, 14 on one that ran Opus 1) |
 
 ### Synth engines (`synth_types`)
 
@@ -86,9 +86,11 @@ Sounds store the engine's name as `type`.
 | mixtur | - | op1r | Musica Obscura by ultralazr; Mixtur-Trautonium undertones; a plugin file (since op1r 34): its row is added at start-up (15 with all of op1r's plugins on a stock database) |
 | arc | - | op1r | Musica Obscura by ultralazr; Duddell's singing arc; a plugin file (since op1r 34): its row is added at start-up (16 with all of op1r's plugins on a stock database) |
 | aether | - | op1r | a tilt theremin (the motion sensor), since op1r 33; a plugin file (since op1r 34): its row is added at start-up (17 with all of op1r's plugins on a stock database) |
-| iter | - | Opus | not in Opus's engine list: Opus's own engines run in its slot. At start Opus deletes a row 11 named iter (its own builds 29-57 added it; op1r uses that row too) |
-| dimension | - | Opus | runs in iter's slot: marker 0x4F01 |
-| amp | - | Opus | guitar amp; runs in iter's slot: marker 0x4F02 |
+| iter | 11 | Opus | the OS's hidden engine in the engine list with opus.iter: its row 11 added when the engine list loads, deleted at start without the plugin (op1r uses that row too). Opus's engines run in its slot either way |
+| dimension | - | Opus | opus.dimension; in the engine list, no row: runs in iter's slot, mark 0x4F01 |
+| amp | - | Opus | a guitar amp, opus.amp; in the engine list, no row: runs in iter's slot, mark 0x4F02 |
+| dx | - | Opus | a DX7 voice player, opus.dx; in the engine list, no row: runs in iter's slot, mark 0x3B0D |
+| outatime | - | Opus | opus.outatime; in the engine list, no row: runs in iter's slot, mark 0x29D4 |
 
 ### Engines and effects hosted in another's slot
 
@@ -111,6 +113,10 @@ A mod can run its engines in the slot of iter, stock's hidden engine, and its ef
 | 0x5300 + 32 … 63 (synth and FX) | knobs[4], as above | plugin files without a number of their own: each OP-1 gives them one at start-up and keeps it (op1.db, table op1rplugins). 1 … 31 are for the numbers in ORDERS.md | op1r |
 | 0x4F01 | knobs[4] of a sound with "type": "iter" | dimension | Opus |
 | 0x4F02 | knobs[4] of a sound with "type": "iter" | amp | Opus |
+| 0x3B0D (15117) | knobs[4] of a sound with "type": "iter" | dx | Opus |
+| 0x29D4 (10708) | knobs[4] of a sound with "type": "iter" | outatime | Opus |
+| 0x0100-0x7FFF, never 0x4Fxx or 0x53xx | knobs[4] of a sound with "type": "iter"; its "opus" member names the plugin | any Opus 2 plugin's engine: FNV-1a of the plugin's ID, ':' and the engine's name, folded to 15 bits (the same on every OP-1); op1r's engines through the bridge keep op1r's 0x5300 + n | Opus |
+| FX 0x0100-0x7FFF, never 0x53xx | knobs[4] of an effect with "fx_type": "filter" | an effect a plugin runs in the filter's slot without a number of its own: the same hash of the plugin's ID and the effect's name; op1r's effects through the bridge keep op1r's 0x5300 + n | Opus |
 
 ### Drum engines (`drum_types`)
 
@@ -157,7 +163,7 @@ Sounds are JSON. Record any key a mod adds, so two mods don't use one key for di
 | key | what | project |
 |---|---|---|
 | op1r | drum+'s settings per pad, in a drum kit (since op1r 30); stock loads the kit as a normal drum | op1r |
-| opus | Opus's member: "v" and "uses" (the Opus parts a sound needs, by plugin ID, e.g. "opus.dimension": 1), and the second effect: fx2_type (by name), fx2_active, fx2_params | Opus |
+| opus | Opus's member: "v" and "uses" (the plugins a sound needs, by plugin ID with its data's version, e.g. "opus.dimension": 1); "engine" (the plugin whose engine runs in iter's slot); "held" (the sound's own envelope and LFO while an engine holds the OS's); "engine_data" (an engine's own data, hex); a second effect's record under its manager's prefix: Fx overdrive's fx2_type (by name), fx2_active, fx2_params | Opus |
 
 ### Key combinations
 
@@ -184,17 +190,19 @@ Combinations a mod takes outside its own screens.
 | hold drum + scissors | the drum page | the drum sample editor (since op1r 25) | op1r |
 | sequencer + tape | any screen, with MIDI SEQ on (clock screen, T2) | op1r's 4-track MIDI sequencer; with MIDI SEQ off it does what stock does (since op1r 35) | op1r |
 | synth + drum + tape + mixer, held together | any screen | Opus's menu (stock: the helicopter game) | Opus |
-| tape + left / tape + right | any screen | tape undo / redo | Opus |
-| shift + left / shift + right | any screen | pitch bend down / up | Opus |
-| hold synth or drum + s1-s8 through the save clock | any screen | overwrite save | Opus |
-| push blue / push green | a synth engine's T1 screen | the scales / chords quick menu | Opus |
-| shift + push white / shift + push orange | the synth's pages | dice: a random sound / undo (shift + orange press is also Oblique Strategies' card) | Opus |
-| push white / push orange; white / orange turn | the synth's shift page (synth, T2, hold shift) | pitch bend: up / down depth; curve / speed | Opus |
-| shift + white turn | the tape screen | zooms the tape view (plain white still sets the tape's speed) | Opus |
-| push orange | the preset browser (shift + s1-s8), on your own presets | rename | Opus |
-| play / stop | the tape, with "play pause" on in Opus's menu | play pauses; stop jumps back and plays on | Opus |
-| green | the effect list (shift + T3), with fx overdrive on | chooses the second effect | Opus |
-| push blue; T3 | an effect page, with fx overdrive on | switches between the two effects' screens; the second effect on / off | Opus |
+| help | any screen | Opus's FN: a modifier for plugins' controls (stock: the help overlay, gone; shift + help's date and time is in Opus's menu, system) | Opus |
+| tape + left / tape + right | the tape screen | tape undo / redo (opus.tapeundo) | Opus |
+| shift + left / shift + right | the tape screen, the loop playing, with tape undo's "loop lock" on (off by default) | the loop no longer jumps by its own length, as stock queues it (opus.tapeundo) | Opus |
+| shift + left / shift + right | where stock bends: the synth and drum screens, COM, the preset browser | pitch bend down / up, its depth, speed and curve set (opus.bend) | Opus |
+| hold synth or drum + s1-s8 through the save clock | any screen | overwrite save (opus.overwrite) | Opus |
+| push blue / push green | the synth's T1 page | the scales / chords quick pages (opus.scales) | Opus |
+| shift + push white / shift + push orange | the synth's pages | dice: a random sound / undo the last roll (opus.dice; shift + orange press is also Oblique Strategies' card) | Opus |
+| push white / push orange; white / orange turn | the synth's shift page (synth, T2, hold shift) | pitch bend: up / down depth; curve / speed (opus.bend) | Opus |
+| shift + white turn | the tape screen | zooms the tape view (opus.zoom; plain white still sets the tape's speed) | Opus |
+| push orange | the preset browser (shift + s1-s8), on your own presets | rename (opus.rename) | Opus |
+| play / stop | any screen, while the tape plays ("play as pause", on by default) | play pauses; stop jumps back and plays on (opus.playpause) | Opus |
+| green turn | the effect list (shift + T3) | chooses the second effect (opus.overdrive) | Opus |
+| push blue | an effect's page (T3 on the synth, drum or mixer) | the first or the second effect's page (opus.overdrive) | Opus |
 
 ### MIDI
 
@@ -208,7 +216,7 @@ CC numbers and SysEx messages a mod answers to.
 | CC 53-60, 72-79 | synth automation of the current synth slot, absolute: 53-56 engine knobs, 57-60 envelope A/D/S/R, 72-75 FX knobs, 76-79 LFO knobs (since op1r 35) | op1r |
 | SysEx F0 00 20 76 00 01 03 F7 / ... 00 F7 | OP-Z controller mode on / off | op1r |
 | SysEx F0 00 20 76 7D <cmd> ... F7 | firmware and plugin update over USB: files are staged, the OP-1 asks before applying them (since op1r 31; 00 20 76 is Teenage Engineering's maker ID) | op1r |
-| a second USB MIDI port | the dev port; in the release it answers ping and version only | Opus |
+| a second USB MIDI port | the dev port; in the release it answers ping and version, and memory reads while the developer mode is on (Opus's menu, system) | Opus |
 
 ### Files and folders
 
@@ -221,9 +229,9 @@ Files a mod adds to the update package, and files and folders it writes on the O
 | /yaffs2/op1r_stage/ (updates over USB, staged until applied) | op1r |
 | /yaffs2/user/op1r_seq.mseq (the MIDI sequencer's song) | op1r |
 | op1.db: the table op1rplugins (plugin files' numbers) | op1r |
-| content/opus.txt (added: marks an Opus install), content/display/save.svg (replaced: the save overlay with "overwriting") | Opus |
-| /yaffs2/mod/ (settings.a, settings.b, clean, cleaned, themes/, splash/; the USB disk shows /themes and /splash) | Opus |
-| /yaffs2/user/tapeundo0.tmp, tapeundo1.tmp, tapeundo2.tmp | Opus |
+| content/opus.txt (added: marks an Opus install) | Opus |
+| /yaffs2/mod/ (settings.a, settings.b; mods/, the plugin files, shown on the USB disk as /mods; a folder per plugin ID with its settings and files, some shown as /mods/NAME; themes/, splash/, skip/, crash/; the cleaner's clean and cleaned; journals) | Opus |
+| /yaffs2/mod/opus.tapeundo/undo0.tmp, undo1.tmp, undo2.tmp (Opus 1's /yaffs2/user/tapeundo*.tmp deleted at start) | Opus |
 | op1.db: the table opus_kept (the cleaner's copies) | Opus |
 
 ### Changes to the firmware files
@@ -235,8 +243,8 @@ Where a mod changes the files in the update package. Two mods that change the sa
 | OP1_vdk.ldr | 86 replaced ranges and a 181,708-byte block inserted at offset 2,171,351, among them the CALL at 0x019F02EE (Clips::load: the plugin loader); the full list is in data/manifest.json | op1r |
 | content/op1_factory.db | 15 edits: the fixed rows above (filter, iter, drum+, the sequencers); the plugins' rows are added at start-up | op1r |
 | OP1_vdk.ldr | CALLs at 0x019C2D3E (key handler, also patched by op1r: it chains to whatever is there) and 0x01A3BC0E (end of the GUI frame) redirected; an 8,360-byte block inserted before the FINAL block; the FIRST block's length and checksum | Oblique Strategies |
-| OP1_vdk.ldr | 222 changed ranges (838 bytes) in 17 of the OS's blocks, among them the key handler's CALL at 0x019C2D3E (also redirected by op1r and Oblique Strategies); a 284,556-byte block loaded at 0x01E00000 and a zero-filled block after it | Opus |
-| content/display/save.svg | replaced (overwrite save's screen) | Opus |
+| OP1_vdk.ldr | 129 changed ranges (248 bytes) in 15 of the OS's blocks, among them the key handler's CALLs at 0x019C2D3E (also redirected by op1r and Oblique Strategies) and 0x019C2E94; a 190,052-byte block loaded at 0x01E00000 and a zero-filled block after it | Opus |
+| the OS's code in RAM, at start | each loaded plugin's places (its manifest's place lines: the address and the stock bytes it expects); a place whose bytes differ, or that another plugin holds, is refused and the plugin not loaded | Opus |
 
 ### Memory
 
@@ -249,12 +257,16 @@ RAM a mod's code and data use while the OP-1 runs.
 | 0x01EC0000-0x01EEA0CC | zeroed data (an LDR fill block, op1r 35) | op1r |
 | 0xFFA0BFB4-0xFFA0BFDC | 40 bytes in L1 instruction memory (an LDR block) | op1r |
 | the heap (malloc) | plugin files' code and data, loaded at start-up | op1r |
-| 0x01E00000-0x01E4578C | code and data (one LDR block) | Opus |
-| 0x01E4578C-0x01EF3228 | zeroed state (a FILL block) | Opus |
-| 0x01F00000-0x01F40000 | the menu's page cache | Opus |
+| 0x01E00000-0x01E2E664 | code and data (one LDR block) | Opus |
+| 0x01E2E664-0x01E5698C | zeroed state (a FILL block) | Opus |
+| 0x01E569A0-0x01F00000 | the plugins' near pool: their code and data, within a call's reach of the OS's code | Opus |
+| 0x01F00000-0x01F32000 | the menu's page cache | Opus |
 | 0x01F40000-0x01F5E000 | colours' tables | Opus |
-| 0x01F60000-0x01FA0000 | the plate's second-effect tanks | Opus |
-| 0x01FA0000-0x02000000 | large buffers, cleared at start-up | Opus |
+| 0x01FA0000-0x01FBE420 | the core's large buffers, cleared at start-up | Opus |
+| 0x02C00000-0x02FFE000 | the plugins' far pool | Opus |
+| 0x02FFE000-0x03000000 | the crash record, kept through a restart | Opus |
+| 0x03000000-0x03032000 | the start-up picture (opus.splash), built in the OS's second frame buffer before the OS uses it | Opus |
+| 0xFF90081C-0xFF906908, 0xFF907E00-0xFF908000 | the plugins' fast memory (L1 data): the helicopter game's sounds, silenced (the game can't be reached), and 512 free bytes | Opus |
 
 ### Version text
 
@@ -265,7 +277,7 @@ What a build calls itself, so bug reports and tools can tell builds apart.
 | stock 246 | R. 00246 |  |
 | op1r |  op1r 35 (in place of R. 00246) | the boot screen shows op1r and its version under the TE logo |
 | Oblique Strategies | unchanged |  |
-| Opus | unchanged (R. 00246) | Opus's menu: hold help for "opus 1" and the build |
+| Opus | unchanged (R. 00246) | Opus's menu: hold help on its main page for "opus 2" and "build 1"; the diagnostics (T3), system tab: "2 build 1"; the dev port's version command |
 
 ### Names a firmware doesn't know
 
@@ -275,13 +287,13 @@ What a firmware does with a sound that names an effect or engine it doesn't have
 |---|---|---|
 | stock 246 | crashes ([op-forums #945](https://op-forums.com/t/4283/945)) | locks up with "patch.cpp:390 Invalid synth patch" (op1r's changelog, op1r 18) |
 | op1r | loads the sound with the filter (since op1r 34; before, an unknown name stopped the OP-1 at boot, as on stock); an effect number with no plugin plays the filter | loads the sound as iter (since op1r 18); an engine number with no plugin plays iter |
-| Opus | plays it as cwo, switched off; the sound itself is never rewritten | plays a stand-in (the first cluster preset) and the browser says "incompatible preset"; the sound is never rewritten. An iter sound without one of Opus's markers counts as unknown |
+| Opus | plays it as cwo, switched off; the sound itself is never rewritten. A second effect (Fx overdrive) of a type it doesn't know plays nothing and is written back as it was | in a slot at start, plays a stand-in (the first cluster preset); the browser refuses it and says which plugin it needs ("needs opus.dx"); the sound is never rewritten. An iter sound with a mark (knobs[4] 0x100 or more) no loaded plugin has counts as unknown; below 0x100 it plays as the OS's iter |
 
 ### How each was checked
 
 - stock 246: content/op1_factory.db in op1_246.op1 (SHA-256 c5315218f825f143b415ca554516541898abee843d3a236df0b54c04e1fb13a9)
 - op1r: data/manifest.json (its op1_factory.db edits applied to stock) and its inserted LDR block, op1r 35 (output SHA-256 061d85652ed1892a57ed37c4d0e6b4d85f348d73700ccd07879d60d6b5788d55, all plugins), README.md, CHANGELOG.md; op1r-src synth_sdk/plugins/ORDERS.md, op1_plugin.h, plugload/plugload.c, devupd/du.h
-- Opus: its update file op1_246_opus.op1 (SHA-256 b4e37fc48fecbb83d71923bc34c209bf7cc4b7658f0c24b4b33888199f7adbc2) and its source
+- Opus: its update file op1_246_opus2.op1 (SHA-256 42d63d5d07319f0dcf7795b493c20dc3e57c41463b680cf3a22a1ca11b04f26e), its starter pack opus2-starter-pack.zip (SHA-256 9dfdca508784a07875857c850d57ce21dd4d46843b70fee230750e0845aa6b63), bridge.opmod (SHA-256 07f1e1f5407cfc5fc38304c6df36f896f50f3aa9c3e7c77b9ce9fee796ea1582) and their source; the rows of op1_factory.db read back in the emulator with the whole pack
 - Oblique Strategies: patch_oblique.py and README.md (patch list, hook sites); stock output SHA-256 e452aa9576ec8af500442d95bc373eaf2ed9a3634cf5c972c73908067a7ed1db
 - Squarewave Studio: the author's own entry (issue #2, 2026-10-13); not released yet
 
